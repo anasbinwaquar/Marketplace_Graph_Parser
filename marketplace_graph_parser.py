@@ -32,14 +32,17 @@ def Graph_Parser(url,driver):
 	f.close()
 
 
-urls=['https://marketplace.tf/items/tf2/5021;6','https://marketplace.tf/items/tf2/162;6','https://marketplace.tf/items/tf2/1071;11;kt-3','https://marketplace.tf/items/tf2/143;6']
+urls=list()
+with open('links.csv', 'r',encoding='utf8',errors='ignore') as file:
+    for line in file.readlines():
+    	urls.append(line)
 chrome_dir = 'C:\\Users\\Anas\\Desktop\\Web crawl Using Python\\Web Driver\\chromedriver.exe'
 chrome_options = Options()
 chrome_options.add_argument("headless")
 chrome_options.add_argument("--no-sandbox")
 chrome_options.add_argument("user-data-dir=C:\\Users\\Anas\\Desktop\\Web crawl Using Python\\chrome-data")
-driver = webdriver.Chrome(executable_path='./chromedriver.exe',options=chrome_options)
+driver = webdriver.Chrome(executable_path='./driver/chromedriver.exe',options=chrome_options)
 for url in urls:
 	Graph_Parser(url,driver)
 
-driver.close()
+driver.quit()
